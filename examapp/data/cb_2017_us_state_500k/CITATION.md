@@ -1,0 +1,2 @@
+U.S. Census Bureau, 2019, Shape file `cb_2017_us_state_500k`, accessed on January 22, 2019, at https://www.census.gov/geo/maps-data/data/cbf/cbf_state.html
+[Currently (September, 27, 2019) a 2018 version resides at https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_state_500k.zip through the parent link https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html]

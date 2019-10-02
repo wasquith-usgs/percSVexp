@@ -1,0 +1,46 @@
+[
+  {
+    "name": "percSVexp",
+    "organization": "U.S. Geological Survey",
+    "description": "Source Code for Experimental Assessment of Site Importance using Support Vectors for Hydrometeorologic Network Analyses",
+    "version": "0.0.1",
+    "status": "Preliminary Research",
+
+    "permissions": {
+      "usageType": "openSource",
+      "licenses": [
+        {
+          "name": "Public Domain, CC0-1.0",
+          "URL": "https://www.github.com/USGS-R/probSVexpment/blob/master/LICENSE.md"
+        }
+      ]
+    },
+
+    "homepageURL": "https://www.github.com/USGS-R/percSVexp",
+    "downloadURL": "https://www.github.com/USGS-R/percSVexp/-/archive/master/probSVexpment.zip",
+    "disclaimerURL": "https://www.github.com/USGS-R/percSVexp/blob/master/DISCLAIMER.md",
+    "repositoryURL": "https://www.github.com/USGS-R/percSVexp.git",
+    "vcs": "git",
+
+    "laborHours": 0,
+
+    "tags": [
+      "support vector machine",
+      "support vectors",
+      "generalized additive model"
+    ],
+
+    "languages": [
+      "R"
+    ],
+
+    "contact": {
+      "name": "William H. Asquith",
+      "email": "wasquith@usgs.gov"
+    },
+
+    "date": {
+      "metadataLastUpdated": "2019-10-20"
+    }
+  }
+]
