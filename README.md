@@ -1,4 +1,5 @@
 # README (./percSVexp/README.md)
+<img src='/www/bluebonnets.jpg' height='160' align="right" />
 
 #### Author:           William H. Asquith
 #### Point of contact: William H. Asquith (wasquith@usgs.gov)
