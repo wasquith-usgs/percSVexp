@@ -38,18 +38,30 @@ Z <- xymod(X,Y)
 set.seed(seed)
 
 # STEP 4.
-pdf("../draftfigures/fig01_surface.pdf", useDingbats=FALSE)
+pdf("../draftfigures/fig01_rawsurface.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   plot(X/200, Y/200, type="n",
        xlab="FRACTION EASTING RANGE", ylab="FRACTION NORTHING RANGE")
   polygon(c(0,1,1,0,0), c(50,50,100,100,50)/200, border=2, col=8, lwd=2, lty=2)
-  contour(M, lwd=1.5,labcex = 0.7, nlevels=8, add=TRUE, axes=FALSE)
   points(X/200, Y/200, pch=21, col="purple", lwd=0.6, bg=8, cex=0.8)
+  contour(M, lwd=1.5, labcex = 1.2, nlevels=8, add=TRUE, axes=FALSE, col=grey(0.3))
   par(opts)
 dev.off()
 
+pdf("../draftfigures/fig02_rawlegend.pdf", useDingbats=FALSE)
+  opts <- par(no.readonly = TRUE); par(las=1)
+  cols <- terrain.colors(20)
+  quas <- quantile(Z, probs=(1:20)/20)
+  plot(rep(1,20), 1:20, col=rev(cols), pch=15, cex=3.2,
+       xaxt="n", yaxt="n", xlab="", ylab="")
+  for(i in 1:20) {
+    text(1.1, i, round(quas[i], digits=0))
+  }
+  mtext("Approximate break points\nin the Z direction")
+  par(opts)
+dev.off()
 
-pdf("../draftfigures/fig02_image.pdf", useDingbats=FALSE)
+pdf("../draftfigures/fig02_rawimage.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   plot(X/200, Y/200, type="n",
        xlab="FRACTION EASTING RANGE", ylab="FRACTION NORTHING RANGE")
@@ -107,6 +119,7 @@ dev.off()
 message("Global vertical mean in cut partition: ", round(mean(nZ), digits=3))
 
 # STEP 7
+txt <- "global mean of vertical distance"
 pdf("../draftfigures/fig05_horzmarginC.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   skip <- Xp >= 100 & Xp <= 160
@@ -124,6 +137,8 @@ pdf("../draftfigures/fig05_horzmarginC.pdf", useDingbats=FALSE)
   set.seed(seed)
   svm <- kernlab::ksvm(nZ~nX, epsilon=0.3); six <- kernlab::SVindex(svm)
   lines(Xs, predict(svm, data.frame(nX=Xs)), col=rgb(0.1,0.8,.1), lwd=3)
+  text(135, 40, txt, cex=0.9)
+  arrows(100, 42, 100, mean(nZ), angle=15)
   par(opts)
 dev.off()
 
@@ -161,7 +176,7 @@ pdf("../draftfigures/fig07_svmgam.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   plot(predict(GAM2d), predict(SVM, data.frame(X=X, Y=Y)),
        col="#66A48B", lwd=0.8,
-       xlab="GAM PREDICTION", ylab="SVM PREDICTION")
+       xlab="GAM PREDICTION, UNITLESS", ylab="SVM PREDICTION, UNITLESS")
   abline(0,1)
   par(opts)
 dev.off()
@@ -296,6 +311,7 @@ svm2 <- rbind(svm, data.frame(index=indices_never_used, svm_count=0, svm_ratio=0
 svm2 <- svm2[order(svm2$index),]
 svm <- svm2
 
+txt <- "Color hue is prorated from\nred to blue based on\nnonexceedance probability."
 pdf("../draftfigures/fig08_svmvecpp.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   tmp <- svm[order(svm$svm_ratio),]
@@ -304,6 +320,7 @@ pdf("../draftfigures/fig08_svmvecpp.pdf", useDingbats=FALSE)
        xlab="NONEXCEEDANCE PROBABILITY", lwd=0.8, type="p",
        ylab="SUPPORT VECTOR PERCENTAGE", xlim=c(0,1),
        col=rgb(1-tmp$svm_ratio,0,tmp$svm_ratio))
+  text(0.3, 70, txt, cex=0.9)
   par(opts)
 dev.off()
 
