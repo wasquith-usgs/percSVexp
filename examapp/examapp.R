@@ -165,6 +165,7 @@ always_hundred_percent <- length(needed_greatly)
 # In LaTeX source \numgagesalwaysSVs is the variable always_hundred_percent
 message("Number of streamgages 100 percent of time support vectors = ", always_hundred_percent)
 
+txt <- "Color hue is prorated from red to blue\nbased on nonexceedance probability."
 pdf("../draftfigures/fig09_svmtexaspp.pdf", useDingbats=TRUE)
   opts <- par(no.readonly = TRUE); par(las=1)
   tmp <- SF[order(SF$svm_ratio),]
@@ -173,6 +174,7 @@ pdf("../draftfigures/fig09_svmtexaspp.pdf", useDingbats=TRUE)
        xlab="NONEXCEEDANCE PROBABILITY", lwd=0.8, type="p",
        ylab="SUPPORT VECTOR PERCENTAGE",
        col=rgb(1-tmp$svm_ratio,0,tmp$svm_ratio))
+  text(0.7, 50, txt, cex=0.9)
   par(opts)
 dev.off()
 
@@ -193,6 +195,10 @@ for(site in needed_greatly) {
   i <- i + 1
   #pk <- get(site, envir=PKenv)
   pk <- PK[PK$site_no == site,]
+  pk <- pk[pk$year_va <= 2017,] # On 10/03/2019 last year was still 2017
+  # USGS is behind in updating the peak values database during database
+  # transitions. By setting 2017 year, we get reproducibility of results
+  # of sources in this code base for purposes of a research paper.
   last_year[i] <- max(pk$year_va)
 }
 
@@ -202,6 +208,7 @@ discontinued_hundred_percent <- length(needed_badly)
 message("Number of streamgages 100 percent of time support vectors that are ",
         "discontinued \\numgagesalwaysSVsdiscontinued= ",discontinued_hundred_percent)
 
+txt <- "Color hue is prorated from\nred to blue based on\nnonexceedance probability."
 
 # Create the map
 pdf("../draftfigures/fig10_svmtexasmap.pdf", useDingbats=TRUE)
@@ -215,11 +222,11 @@ pdf("../draftfigures/fig10_svmtexasmap.pdf", useDingbats=TRUE)
   for(site in needed_badly) {
     plot(SF[SF$STATION == site,], pch=1, col=4, lwd=0.8, cex=1.2, add=TRUE)
   }
-  legend(-330000, 1490000,
+  legend(-340000, 1500000,
          c("ASV sites (SV 100 percent of the time)",
            "NSV sites (SV <=5 percent of the time)",
-           "Other sites with color blue to red color ramp",
-           "Indicator of ASV not operated since at least 2007"),
+           "Neither ASV or NSV sites with color blue to red color ramp",
+           "Indicator of ASV not operated since at least 2000"),
           bty="n", cex=0.6, pt.bg=c(4,2,rgb(0.5,0,0.5),4),
           pt.lwd=c(0.6,0.6,0.6,0.8), pch=c(24,25,23,1), col=c(8,8,8,4))
   text(-280000, 1330000, "SV, support vector", cex=0.6, pos=4)
@@ -231,6 +238,7 @@ pdf("../draftfigures/fig10_svmtexasmap.pdf", useDingbats=TRUE)
   text(-715000, 450000, paste0("Base map from U.S. Census Bureau digital sources, 1:500k\n",
                                "Albers equal area projection"),
        cex=0.7)
+  text(70000, 450000, txt, cex=0.85)
   par(cex=1)
   par(opts)
 dev.off()
