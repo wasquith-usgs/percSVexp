@@ -163,6 +163,7 @@ pdf("../draftfigures/fig06_gam2d.pdf", useDingbats=FALSE)
   six <- kernlab::SVindex(SVM); svm.n <- length(six)
   points(X,       Y,       col=8, pch=16, cex=0.6)
   points(X[ six], Y[ six], col=2, cex=0.8)
+  message("Figure 'fig05_gam2d.pdf' has ",length(six),"  SVM support vectors shown as red circles")
   NSE.svm.whole  <- NSE(Z,pred.z)
   RMSE.svm.whole <- sqrt(mean(( pred.z - Z)^2))
   message("SVM Whole (seed, NSE, RMSE, n): ", seed, ", ",
