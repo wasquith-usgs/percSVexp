@@ -16,6 +16,7 @@ The script reports many helpful messages to the console. These report material t
 
 The script `ProbSVMexp_withRVM.R` represents abandoned experimental efforts involving research on Relavence Vector Machines (RVMs). The script is only kept here for some type of legacy reference should someone be interested. It should run out of the box, but be warned, it will overwrite the figures generated aby the `ProbSVMexp.R` script. The `ProbSVMexp_withRVM.R` does not produce any results directly referenced in the paper. No further discussion is made about the script.
 
+There is a file `figs01-02_refmeas.pdf` that represents a combination of the `fig01_rawsurface.pdf`, `fig02_rawimage.pdf`, and `fig02_rawlegend.pdf` files that are produced by the script. The `figs01-02_refmeas.pdf` file was created in a vector editing software package. This file is emplaced in this directory as a reference version hold the "measure" (the margins) and axis titles and labels as well as the legend on the far right. In the event that the author needs to repeat the construction of the figure in the research paper, then a reference is available.
 
 # ORDER OF OPERATION
 
@@ -27,7 +28,7 @@ The character string `# STEP no.` is emplaced as comments in the script `ProbSVM
 
 3. STEP 3 --- Creation of the observation network of 800 sites. Here is it important that the seed is set to 62 so for each operation of the script, the same observation sites are always present. The locations and observations of this network are in the variables `X` and `Y` (location) and `Z` (observation).
 
-4. STEP 4 --- Creation of figures `fig01_surface.pdf` and `fig02_image.pdf`. (Recall that this are written to the `../draftfigures` directory. The first figure shows a contour map with the true surface along with the observation sites where realization of observation are made. The shaded region is a special subset to be used in later figures. The second figure is a heat map representation.
+4. STEP 4 --- Creation of figures `fig01_rawsurface.pdf` and `fig02_rawimage.pdf`. (Recall that these are written to the `../draftfigures` directory. The first figure shows a contour map with the true surface along with the observation sites where realization of observation are made. The shaded region is a special subset to be used in later figures. The second figure is a terrain map representation. A raw legend of the terrain map is `fig02_rawlegend.pdf`. These three figures are branded as `raw` to indicate that a passage through a vector editing software was used to create the final figures 1 and 2 in the paper.
 
 5. STEP 5 --- Creation of figure `fig03_horzmarginA.pdf` uses the data shaded in figures 1 and 2 where the northing coordinate is flatted to the horizontal axis. A generalized additive model (GAM) (`gam <- mgcv::gam(Zp~s(Xp, bs="tp"))`) is fit and draw (blue line, `col=4`). A SVM is fit (`svm <- kernlab::ksvm(Zp~Xp, epsilon=0.3)`) to the data and drawn (red line, `col=2`). It is important to note the use of the plotting character (`pch`) in the `points()` calls. The support vectors are plotted as filled grey dots and the nonsupport vectors are the open circles.
 
@@ -47,6 +48,33 @@ Highly related to this figure, the next figure (`fig07_svmgam.pdf`) is created t
 
 # SESSION INFO (Fri Sep 27 09:04:02 2019)
 ```{r}
+  R version 3.6.1 (2019-07-05)
+  Platform: x86_64-apple-darwin15.6.0 (64-bit)
+  Running under: macOS High Sierra 10.13.6
+
+  Matrix products: default
+  BLAS:     /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/
+                                       vecLib.framework/Versions/A/libBLAS.dylib
+  LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+
+  locale:
+  [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+  attached base packages:
+  [1] stats     graphics  grDevices utils     datasets  methods   base     
+
+  other attached packages:
+  [1] mgcv_1.8-29         nlme_3.1-140        feather_0.3.5       GISTools_0.7-4     
+  [5] rgeos_0.5-1         MASS_7.3-51.4       RColorBrewer_1.1-2  maptools_0.9-5     
+  [9] rgdal_1.4-4         sp_1.3-1            kernlab_0.9-27      dataRetrieval_2.7.5
+
+ loaded via a namespace (and not attached):
+  [1] Rcpp_1.0.2      rstudioapi_0.10 xml2_1.2.2      splines_3.6.1   hms_0.5.1      
+  [6] lattice_0.20-38 R6_2.4.0        lmomco_2.3.2    rlang_0.4.0     httr_1.4.1     
+ [11] tools_3.6.1     Lmoments_1.3-1  grid_3.6.1      goftest_1.1-1   tibble_2.1.3   
+ [16] crayon_1.3.4    Matrix_1.2-17   readr_1.3.1     vctrs_0.2.0     curl_4.2       
+ [21] zeallot_0.1.0   compiler_3.6.1  pillar_1.4.2    backports_1.1.4 foreign_0.8-71 
+ [26] pkgconfig_2.0.3
 ```
 
 # REFERENCES
