@@ -38,7 +38,7 @@ Z <- xymod(X,Y)
 set.seed(seed)
 
 # STEP 4.
-pdf("../draftfigures/fig01_rawsurface.pdf", useDingbats=FALSE)
+pdf("../draftfigures/fig01a_rawsurface.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   plot(X/200, Y/200, type="n",
        xlab="FRACTION EASTING RANGE", ylab="FRACTION NORTHING RANGE")
@@ -48,7 +48,7 @@ pdf("../draftfigures/fig01_rawsurface.pdf", useDingbats=FALSE)
   par(opts)
 dev.off()
 
-pdf("../draftfigures/fig02_rawlegend.pdf", useDingbats=FALSE)
+pdf("../draftfigures/fig01ab_rawlegend.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   cols <- terrain.colors(20)
   quas <- quantile(Z, probs=(1:20)/20)
@@ -61,7 +61,7 @@ pdf("../draftfigures/fig02_rawlegend.pdf", useDingbats=FALSE)
   par(opts)
 dev.off()
 
-pdf("../draftfigures/fig02_rawimage.pdf", useDingbats=FALSE)
+pdf("../draftfigures/fig01b_rawimage.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   plot(X/200, Y/200, type="n",
        xlab="FRACTION EASTING RANGE", ylab="FRACTION NORTHING RANGE")
@@ -76,8 +76,9 @@ dev.off()
 
 
 # STEP 5
+txt <- "global mean of vertical distance"
 Xs <- 1:200
-pdf("../draftfigures/fig03_horzmarginA.pdf", useDingbats=FALSE)
+pdf("../draftfigures/fig02_horzmarginA.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   notskip <- Y >= 50 & Y <= 100;
   Xp <- X[notskip]; Zp <- Z[notskip]
@@ -92,13 +93,15 @@ pdf("../draftfigures/fig03_horzmarginA.pdf", useDingbats=FALSE)
   points(Xp[-six], Zp[-six], col=1, lwd=0.7, pch=1,  cex=1.1)
   points(Xp[ six], Zp[ six], col=grey(0.4),  pch=16, cex=0.8)
   lines(Xs, predict(gam, data.frame(Xp=Xs)), col=4, lwd=2)
+  text(135, 40, txt, cex=0.9)
+  arrows(100, 42, 100, mean(nZ), angle=15)
   par(opts)
 dev.off()
 message("Global vertical mean in partition: ", round(mean(Zp), digits=3))
 
 
 # STEP 6
-pdf("../draftfigures/fig04_horzmarginB.pdf", useDingbats=FALSE)
+pdf("../draftfigures/fig03_horzmarginB.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   skip <- Xp >= 100 & Xp <= 160
   nX <- Xp[! skip]; nZ <- Zp[! skip]
@@ -114,13 +117,14 @@ pdf("../draftfigures/fig04_horzmarginB.pdf", useDingbats=FALSE)
   points(nX[-six], nZ[-six], col=1, lwd=0.7, pch=1,  cex=1.1)
   points(nX[ six], nZ[ six], col=grey(0.4),  pch=16, cex=0.8)
   lines(Xs, predict(gam, data.frame(nX=Xs)), col=4, lwd=2)
+  text(135, 40, txt, cex=0.9)
+  arrows(100, 42, 100, mean(nZ), angle=15)
   par(opts)
 dev.off()
 message("Global vertical mean in cut partition: ", round(mean(nZ), digits=3))
 
 # STEP 7
-txt <- "global mean of vertical distance"
-pdf("../draftfigures/fig05_horzmarginC.pdf", useDingbats=FALSE)
+pdf("../draftfigures/fig04_horzmarginC.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   skip <- Xp >= 100 & Xp <= 160
   nX <- Xp[! skip]; nZ <- Zp[! skip]
@@ -145,7 +149,7 @@ dev.off()
 
 # STEP 8
 # GAM1d <- gam(Z~s(X)+s(Y)); plot(GAM1d, residuals=TRUE) # just an experiment on this line
-pdf("../draftfigures/fig06_gam2d.pdf", useDingbats=FALSE)
+pdf("../draftfigures/fig05_gam2d.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   set.seed(seed)
   GAM2d <- mgcv::gam(Z~s(X,Y, bs="tp"), data=data.frame(X=X, Y=Y))
@@ -153,7 +157,7 @@ pdf("../draftfigures/fig06_gam2d.pdf", useDingbats=FALSE)
   NSE.gam2d.whole  <- NSE(Z,predict(GAM2d))
   RMSE.gam2d.whole <- sqrt(mean(( predict(GAM2d)- Z)^2))
   message("gam2d.whole: ", round(NSE.gam2d.whole, digits=3), ", ",
-                           round(RMSE.gam2d.whole, digits=3), " {tab:wholemodel}")
+                           round(RMSE.gam2d.whole, digits=3), " {tab:wholemodel} (Table 1)")
   mgcv::plot.gam(GAM2d, xlab="", ylab="")
   mtext("EASTING DISTANCE",  side=1, line=3); par(las=0)
   mtext("NORTHING DISTANCE", side=2, line=3); par(las=1)
@@ -168,12 +172,12 @@ pdf("../draftfigures/fig06_gam2d.pdf", useDingbats=FALSE)
   RMSE.svm.whole <- sqrt(mean(( pred.z - Z)^2))
   message("SVM Whole (seed, NSE, RMSE, n): ", seed, ", ",
            round(NSE.svm.whole,  digits=3), ", ",
-           round(RMSE.svm.whole, digits=3), ", ", svm.n, " {tab:wholemodel}")
+           round(RMSE.svm.whole, digits=3), ", ", svm.n, " {tab:wholemodel} (Table 1)")
   par(opts)
 dev.off()
 
 
-pdf("../draftfigures/fig07_svmgam.pdf", useDingbats=FALSE)
+pdf("../draftfigures/fig06_svmgam.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   plot(predict(GAM2d), predict(SVM, data.frame(X=X, Y=Y)),
        col="#66A48B", lwd=0.8,
@@ -194,13 +198,13 @@ GAM2d.RMSE.six.mod <- sqrt(mean((predict(GAM2d.lite) - Z[six])^2))
 GAM2d.NSE.six.mod  <- NSE(Z[six],predict(GAM2d.lite))
 #message("GAM2d.six.mod (seed, NSE, RMSE, n): ", seed, ", ",
 #         round(GAM2d.NSE.six.mod, digits=3), ", ",
-#         round(GAM2d.RMSE.six.mod, digits=3), ", ", length(Z[six]), " {tab:submodel}")
+#         round(GAM2d.RMSE.six.mod, digits=3), ", ", length(Z[six]), " {tab:submodel} (Table 2)")
 pred.z <- predict(GAM2d.lite, newdata=data.frame(X=X[-six], Y=Y[-six]))
 GAM2d.RMSE.six.out <- sqrt(mean((pred.z - Z[-six])^2))
 GAM2d.NSE.six.out  <- NSE(Z[-six],pred.z)
 #message("GAM2d.six.out (seed, NSE, RMSE, n): ", seed, ", ",
 #         round(GAM2d.NSE.six.out, digits=3), ", ",
-#         round(GAM2d.RMSE.six.out, digits=3), ", ", length(Z[-six]), " {tab:submodel}")
+#         round(GAM2d.RMSE.six.out, digits=3), ", ", length(Z[-six]), " {tab:submodel} (Table 2)")
 
 message("Now computing grid level whole model results")
 
@@ -219,11 +223,11 @@ for(k in 1:length(grid)) {
 message("Grid Level +n^svm Model (NSE, RMSE): n=",svm.n, ", ",
         round(NSE(M,P.lite), digits=3), ", ",
         round(sqrt(mean((M-P.lite)^2)), digits=3),
-        " {tab:submodel}")
+        " {tab:submodel} (Table 2)")
 message("Grid Level -n^svm Model NSE: n=",nobs-svm.n, ", ",
         round(NSE(M,P.invlite), digits=3), ", ",
         round(sqrt(mean((M-P.invlite)^2)), digits=3),
-        " {tab:submodel}")
+        " {tab:submodel} (Table 2)")
 
 
 
@@ -246,10 +250,10 @@ for(j in 1:nsim) {
 message("done")
 message("RAND.NSE.rand:  ", seed, ", n=", svm.n, ", ",
          paste(round(summary(RAND.NSE.rand),  digits=3), collapse=", "),
-        " {tab:simrmsense}")
+        " {tab:simrmsense} (Table 3)")
 message("RAND.RMSE.rand: ", seed, ", n=", svm.n, ", ",
          paste(round(summary(RAND.RMSE.rand), digits=3), collapse=", "),
-        " {tab:simrmsense}")
+        " {tab:simrmsense}} (Table 3)")
 
 
 set.seed(seed)
@@ -271,13 +275,13 @@ for(j in 1:nsim) {
 message("done")
 message("RAND.NSE.six:  ", seed, ", n=", svm.n, ", ",
          paste(round(summary(RAND.NSE.six),  digits=3), collapse=", "),
-        " {tab:simrmsense}")
+        " {tab:simrmsense}} (Table 3)")
 message("RAND.RMSE.six: ", seed, ", n=", svm.n, ", ",
          paste(round(summary(RAND.RMSE.six), digits=3), collapse=", "),
-        " {tab:simrmsense}")
+        " {tab:simrmsense}} (Table 3)")
 message("SVM.Ns with simulations:",
          paste(round(summary(SVM.Ns), digits=3), collapse=", "),
-        "{tab:distsamplesize}")
+        "{tab:distsamplesize} (Table 4)")
 
 #stop()
 
@@ -313,7 +317,7 @@ svm2 <- svm2[order(svm2$index),]
 svm <- svm2
 
 txt <- "Color hue is prorated from\nred to blue based on\nnonexceedance probability."
-pdf("../draftfigures/fig08_svmvecpp.pdf", useDingbats=FALSE)
+pdf("../draftfigures/fig07_svmvecpp.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   tmp <- svm[order(svm$svm_ratio),]
   plot(lmomco::pp(tmp$svm_ratio, sort=FALSE),
