@@ -51,17 +51,17 @@ Highly related to this figure, the next figure (`fig07_svmgam.pdf`) is created t
 
 The script is set up with a seeds on the pseudo-random number generated as `set.seed()` for purposes of trying foster reproducibility. The author uses a `set.seed(62)` associated with the "observation network" so that for each run of the script the same 800 locations are used. The `set.seed(seed)` calls reset back when need to a starting state for the seed. Users will note the strategic use of `set.seed(seed)` in several locations in the script and not just a one time setting.
 
-Late testing (October 2019) seems to indicate that the seed setting is not holding some output results entirely constant compared to the period of original code development in January 2019. Concerning the author's computational infrastructure, R versions at the minimum have changed or some other nuance is present. To add in showing reproducibility of sorts, several screen shots are shown. The first two both use a seed of 1 and the next three use seeds of 2, 3, and 4, respectively. 
+Late testing (October 2019) seems to indicate that the seed setting is not holding some output results entirely constant compared to the period of original code development in January 2019. Concerning the author's computational infrastructure, R versions at the minimum have changed or some other nuance is present. To add in showing reproducibility of sorts, several screen shots are shown. The first two both use a seed of 1 and the next three use seeds of 2, 3, and 4, respectively. The files are located at `./percSVexp/www` with file names `ProbSVMexp_Seed1runA.png`, `ProbSVMexp_Seed1runB.png`, `ProbSVMexp_Seed2run.png`, `ProbSVMexp_Seed3run.png`, and `ProbSVMexp_Seed4run.png`.
 
-<img src='/www/ProbSVMexp_Seed1runA.png'  width='200' align="middle" />
+<img src='/www/ProbSVMexp_Seed1runA.png'  width='500' align="middle" />
 
-<img src='/www/ProbSVMexp_Seed1runB.png'  width='200' align="middle" />
+<img src='/www/ProbSVMexp_Seed1runB.png'  width='500' align="middle" />
 
-<img src='/www/ProbSVMexp_Seed2run.png'  width='200' align="middle" />
+<img src='/www/ProbSVMexp_Seed2run.png'  width='500' align="middle" />
 
-<img src='/www/ProbSVMexp_Seed3run.png'  width='200' align="middle" />
+<img src='/www/ProbSVMexp_Seed3run.png'  width='500' align="middle" />
 
-<img src='/www/ProbSVMexp_Seed4run.png' width='200' align="middle" />
+<img src='/www/ProbSVMexp_Seed4run.png' width='500' align="middle" />
 
 
 
