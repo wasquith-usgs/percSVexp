@@ -3,6 +3,8 @@ library(kernlab)
 library(mgcv)
 seed <- 1 # notice that set.seed(62) is used about 25 lines later, here this is a reminder to the reader
 
+message(date(), " with seed=",seed)
+
 # STEP 1.
 nsim <- 20 # set the number of simulations
 
@@ -86,6 +88,7 @@ pdf("../draftfigures/fig02_horzmarginA.pdf", useDingbats=FALSE)
        xlab="EASTING DISTANCE",
        ylab="VERTICAL DISTANCE")
   lines(par()$usr[1:2], rep(mean(Zp), 2), lty=2)
+  set.seed(seed)
   gam <- mgcv::gam(Zp~s(Xp, bs="tp"))
   set.seed(seed)
   svm <- kernlab::ksvm(Zp~Xp, epsilon=0.3); six <- kernlab::SVindex(svm)
@@ -147,7 +150,7 @@ pdf("../draftfigures/fig04_horzmarginC.pdf", useDingbats=FALSE)
        ylab="VERTICAL DISTANCE")
   lines(par()$usr[1:2], rep(mean(nZ), 2), lty=2)
   points(nX, nZ, col=1,  pch=16, cex=0.9)
-  set.seed(62)
+  set.seed(62) # deliberate here
   for(i in 1:300) {
     svm <- kernlab::ksvm(nZ~nX, epsilon=0.3); six <- kernlab::SVindex(svm)
     lines(Xs, predict(svm, data.frame(nX=Xs)), col=rgb(1,0,0,.1), lwd=1.1)
@@ -188,7 +191,7 @@ pdf("../draftfigures/fig05_gam2d.pdf", useDingbats=FALSE)
   six <- kernlab::SVindex(SVM); svm.n <- length(six)
   points(X,       Y,       col=8, pch=16, cex=0.6)
   points(X[ six], Y[ six], col=2, cex=0.8)
-  message("Figure 'fig05_gam2d.pdf' has ",length(six),"  SVM support vectors shown as red circles")
+  message("Figure 'fig05_gam2d.pdf' has ",length(six)," SVM support vectors shown as red circles")
   NSE.svm.whole  <- NSE(Z,pred.z)
   RMSE.svm.whole <- sqrt(mean(( pred.z - Z)^2))
   message("SVM Whole (seed, NSE, RMSE, n): ", seed, ", ",
@@ -234,6 +237,7 @@ for(k in 1:length(grid)) {
   P.lite[k,]  <- predict(GAM2d.lite,
                          data.frame(X=rep(grid[k],200), Y=grid))
 }
+set.seed(seed)
 GAM2d.invlite <- mgcv::gam(Z[-six]~s(X,Y, bs="tp"), data=data.frame(X=X[-six], Y=Y[-six]))
 
 P.invlite <- matrix(nrow=length(grid), ncol=length(grid))
@@ -306,6 +310,12 @@ message("SVM.Ns with simulations:",
 
 #stop()
 
+if(seed != 1) {
+  message("Not running with seed=1 so numerical entries for the paper at seed=",seed,
+          " are all available above.")
+  message("A safe stop can happen at this point.sd")
+  stop()
+}
 
 
 set.seed(seed)
