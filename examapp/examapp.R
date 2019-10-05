@@ -86,8 +86,9 @@ DB <- merge(WC, QT, by.x="STATION", all=TRUE)
 DB <- DB[complete.cases(DB),]
 DB <- DB[DB$STATION != "08098203",] # NWIS site file is lacking this gage
 DB <- DB[DB$STATION != "08086300",] # NWIS does not seem to be now (04/19/2019) reporting data
-print(length(unique(DB$STATION)))
-print(length(DB$STATION))
+message("No. of unique stations in the DB (database)=",length(unique(DB$STATION)))
+message("No. of stations in the DB (database)=",length(DB$STATION))
+message("     Those two numbers had better be equal to each other.")
 
 Q10 <- log10(DB$trimQ10); CDA <- log10(DB$CDA)
 MCS <- log10(DB$MCS);     MAP <- log10(DB$MAP)
@@ -106,15 +107,9 @@ SF <- sp::spTransform(SF, ALBEA); XY <- coordinates(SF)
 SF$X <- XY[,1]/1000; SF$Y <- XY[,2]/1000; rm(XY)
 SF <- SF[SF$STATE == 48,] # isolate only Texas
 
-print(length(SF$STATION)) # [1] 536 streamgages
+message("No. of unique stations in the SF (database)=",length(SF$STATION)) # [1] 536 streamgages
+message("     This is the number of stations in the SVMs to be now fit.")
 
-
-message("Summary of Overall Network Contributing Drainage Areas in km^2")
-print(10^summary(SF$CDA)*2.589988)
-message("Summary of Overall Network Main-Channel Slopes, dimensionless")
-print(10^summary(SF$MCS))
-message("Summary of Overall Network Mean Annual Precipitation in mm")
-print(10^summary(SF$MAP)*25.4)
 
 # Begin the simulations
 nsim <- 20
@@ -122,7 +117,7 @@ first <- TRUE; ix <- 1:length(SF$Q10)
 message("Starting simulation chucks totaling ",nsim," and this takes time!")
 for(j in 1:nsim) {
   set.seed(j)
-  message("simulation chuck: ",j)
+  message("simulation chuck: ",j," with set.seed(",j,")")
   for(i in 1:length(SF$Q10)) {
     if(as.logical(length(grep("00$", i)))) message(i, "-", appendLF=FALSE)
     SVM <- kernlab::ksvm(SF$Q10[-i]~SF$CDA[-i]+SF$MCS[-i]+SF$MAP[-i]+SF$X[-i]+SF$Y[-i])
@@ -150,20 +145,26 @@ for(site in SF$STATION) {
   SF$svm_ratio[SF$STATION == site] <- svm$svm_ratio[svm$STATION == site]
 }
 
+message("Summary of Overall Network Contributing Drainage Areas in km^2")
+print(10^summary(SF$CDA)*2.589988)
+message("Summary of Overall Network Main-Channel Slopes, dimensionless")
+print(10^summary(SF$MCS))
+message("Summary of Overall Network Mean Annual Precipitation in mm")
+print(10^summary(SF$MAP)*25.4)
 
 
 # In LaTeX source \numgageslessfivepercentSVs is the variable less_than_5
 less_than_five <- length(SF$STATION[SF$svm_ratio <= 0.05])
 # In LaTeX source \percentgageslessfivepercentSVs is the variable pct_less_than_five
 pct_less_than_five <- round(100*less_than_five/length(SF$STATION), digits=0)
-message("Percent of streamgages <= 5 percent of time support vectors = ", pct_less_than_five," percent")
-message("Number of streamgages <=5 percent of time support vectors = ", less_than_five)
+message("Percent of streamgages <= 5 percent of time support vectors = \\percentgageslessfivepercentSVs = ", pct_less_than_five," percent")
+message("Number of streamgages <=5 percent of time support vectors = \\numgageslessfivepercentSVs = ", less_than_five)
 
 
 needed_greatly <- as.character(SF$STATION[SF$svm_ratio == 1])
 always_hundred_percent <- length(needed_greatly)
 # In LaTeX source \numgagesalwaysSVs is the variable always_hundred_percent
-message("Number of streamgages 100 percent of time support vectors = ", always_hundred_percent)
+message("Number of streamgages 100 percent of time support vectors = \\numgagesalwaysSVs =", always_hundred_percent)
 
 txt <- "Color hue is prorated from red to blue\nbased on nonexceedance probability."
 pdf("../draftfigures/fig08_svmtexaspp.pdf", useDingbats=TRUE)
@@ -180,14 +181,13 @@ dev.off()
 
 
 message("Now going to the Internet to pull peaks to determine 'active'",
-        " or 'discontinued' according to settings of this algorithm")
+        " or 'discontinued' according to settings of this algorithm.")
 if(! dir.exists("./pkrda/")) dir.create("./pkrda/")
 if(file.exists("./pkrda.zip")) unzip("./pkrda.zip", overwrite=TRUE)
 PK <- myreadNWISpeak(SF$STATION)
-if(dir.exists("./pkrda/"))   zip("./pkrda.zip", "./pkrda")
+if(dir.exists("./pkrda/"))   zip("./pkrda.zip", "./pkrda", extras="-q")
 if(dir.exists("./pkrda/"))   unlink("./pkrda/",   recursive=TRUE)
 if(dir.exists("./__MACOSX")) unlink("./__MACOSX", recursive=TRUE)
-
 
 last_year <- rep(NA, length(needed_greatly))
 i <- 0
