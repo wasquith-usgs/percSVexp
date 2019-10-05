@@ -53,13 +53,23 @@ The script is set up with a seeds on the pseudo-random number generated as `set.
 
 Late testing (October 2019) seems to indicate that the seed setting is not holding some output results entirely constant compared to the period of original code development in January 2019. Concerning the author's computational infrastructure, R versions at the minimum have changed or some other nuance is present. To add in showing reproducibility of sorts, several screen shots are shown. The first two both use a seed of 1 and the next three use seeds of 2, 3, and 4, respectively. The files are located at `./percSVexp/www` with file names `ProbSVMexp_Seed1runA.png`, `ProbSVMexp_Seed1runB.png`, `ProbSVMexp_Seed2run.png`, `ProbSVMexp_Seed3run.png`, and `ProbSVMexp_Seed4run.png`.
 
+### Seed = 1 (Run A)
+
 <img src='/www/ProbSVMexp_Seed1runA.png'  width='500' align="middle" />
+
+### Seed = 2 (Run B)
 
 <img src='/www/ProbSVMexp_Seed1runB.png'  width='500' align="middle" />
 
+### Seed = 3
+
 <img src='/www/ProbSVMexp_Seed2run.png'  width='500' align="middle" />
 
+### Seed = 4
+
 <img src='/www/ProbSVMexp_Seed3run.png'  width='500' align="middle" />
+
+### Seed = 5
 
 <img src='/www/ProbSVMexp_Seed4run.png' width='500' align="middle" />
 
