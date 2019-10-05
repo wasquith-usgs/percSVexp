@@ -10,7 +10,8 @@
 
 This directory is designed to document source code used in the study of the importance of support vectors of Support Vector Machines (SVMs) in an draft academic paper (Asquith, 2019).  The script `ProbSVMexp.R` requires the external _R_ packages **kernlab** and **mgcv**. These can be found on the Comprehensive R Archive Network (CRAN) (https://cran.r-project.org). The script is technically demanding and to be seen by users as a recipe of sorts for some research ideas on part of the author.
 
-The script is set up with a seeds on the random number generated as `set.seed()` for purposes of fostering reproducibility. The author used an interactive session to compute the results and then port them to the **LaTeX** sources of the paper. Specifically, the author's manner of operation to support the Asquith (2019) paper is to change the seed to different values (2,3,4) and rerun the script. This manner of operation means than with each pass various output facts or results are then retained for the narrative in the paper. This is not an ideal situation but further design of interface is beyond the scope of this research software and scope of documentation. The order of operation of the script closely follows the greater narrative and mathematical presentation in the aforementioned paper.
+
+The author used an interactive session to compute the results and then port them to the **LaTeX** sources of the paper. Specifically, the author's manner of operation to support the Asquith (2019) paper is to change the seed to different values (2,3,4) and rerun the script. This manner of operation means than with each pass various output facts or results are then retained for the narrative in the paper. This is not an ideal situation but further design of interface is beyond the scope of this research software and scope of documentation. The order of operation of the script closely follows the greater narrative and mathematical presentation in the aforementioned paper.
 
 The script reports many helpful messages to the console. These report material that is included in tables or narrative of the paper. The tables are identified by their labels in the LaTeX source of the paper. For example, `tab:wholemodel` refers to what is table 1 in the manuscript. The script is also important because it creates portable document format (PDF) figures along a relative path (up and down) at `../draftfigures`. Therein, the figures `figNN*.pdf` where `NN` is 01, 02, ..., 08 for the eight figure numbers.
 
@@ -45,6 +46,25 @@ Highly related to this figure, the next figure (`fig07_svmgam.pdf`) is created t
 9. STEP 9 --- Performs computations to evaluate the performance of a GAM if only the support vectors were the "sample": `mgcv::gam(Z[six]~s(X,Y, bs="tp")`. Various results of NSE and RMSE are then reported for the GAM using the sample (support vectors in `six`) as well as those for the nonsupport vectors as `-six`. The **LaTeX** label `tab:submodel` within this step represent results heading to that table in the Asquith (2019) manuscript. The key code components to pay attention to are the `Z[six]` and `Z[-six]` subsettings of the observations for the support and nonsupport vectors, respectively.
 
 10. STEP 10 --- Performs computations to study the performance of random samples to feed to GAM modeling of the surface of sample sizes equal the number of support vectors (`svm.n`) identified earlier. There is no use of an SVM in the step. The **LaTeX** label `tab:simrmsense` within this step represent results heading to that table in the Asquith (2019) manuscript.
+
+## Concerning the Use of Seed Setting on the Pseudo-Random Number Generator
+
+The script is set up with a seeds on the pseudo-random number generated as `set.seed()` for purposes of trying foster reproducibility. The author uses a `set.seed(62)` associated with the "observation network" so that for each run of the script the same 800 locations are used. The `set.seed(seed)` calls reset back when need to a starting state for the seed. Users will note the strategic use of `set.seed(seed)` in several locations in the script and not just a one time setting.
+
+Late testing (October 2019) seems to indicate that the seed setting is not holding some output results entirely constant compared to the period of original code development in January 2019. Concerning the author's computational infrastructure, R versions at the minimum have changed or some other nuance is present. To add in showing reproducibility of sorts, several screen shots are shown. The first two both use a seed of 1 and the next three use seeds of 2, 3, and 4, respectively. 
+
+<img src='/www/ProbSVMexp_Seed1runA.png'  width='200' align="middle" />
+
+<img src='/www/ProbSVMexp_Seed1runB.png'  width='200' align="middle" />
+
+<img src='/www/ProbSVMexp_Seed2run.png'  width='200' align="middle" />
+
+<img src='/www/ProbSVMexp_Seed3run.png'  width='200' align="middle" />
+
+<img src='/www/ProbSVMexp_Seed4run.png' width='200' align="middle" />
+
+
+
 
 # SESSION INFO (Fri Sep 27 09:04:02 2019)
 ```{r}
