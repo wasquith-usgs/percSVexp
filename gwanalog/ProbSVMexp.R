@@ -94,7 +94,14 @@ pdf("../draftfigures/fig02_horzmarginA.pdf", useDingbats=FALSE)
   points(Xp[ six], Zp[ six], col=grey(0.4),  pch=16, cex=0.8)
   lines(Xs, predict(gam, data.frame(Xp=Xs)), col=4, lwd=2)
   text(135, 40, txt, cex=0.9)
-  arrows(100, 42, 100, mean(nZ), angle=15)
+  arrows(100, 42, 100, mean(Zp), angle=15)
+  legend(par()$usr[1],par()$usr[4],
+                c("Generalized additive model (GAM)",
+                  "Support vector machine (SVM)",
+                  "Nonsupport vector",
+                  "Support vector"), lty=c(1,1,0,0), pch=c(NA,NA,1,16),
+                  lwd=c(1,1,.7,1), col=c(4,2,1,grey(0.4)),
+                  pt.cex=c(NA,NA,1.1,0.8))
   par(opts)
 dev.off()
 message("Global vertical mean in partition: ", round(mean(Zp), digits=3))
@@ -119,6 +126,13 @@ pdf("../draftfigures/fig03_horzmarginB.pdf", useDingbats=FALSE)
   lines(Xs, predict(gam, data.frame(nX=Xs)), col=4, lwd=2)
   text(135, 40, txt, cex=0.9)
   arrows(100, 42, 100, mean(nZ), angle=15)
+  legend(par()$usr[1],par()$usr[4],
+                c("Generalized additive model (GAM)",
+                  "Support vector machine (SVM)",
+                  "Nonsupport vector",
+                  "Support vector"), lty=c(1,1,0,0), pch=c(NA,NA,1,16),
+                  lwd=c(1,1,.7,1), col=c(4,2,1,grey(0.4)),
+                  pt.cex=c(NA,NA,1.1,0.8))
   par(opts)
 dev.off()
 message("Global vertical mean in cut partition: ", round(mean(nZ), digits=3))
@@ -143,6 +157,13 @@ pdf("../draftfigures/fig04_horzmarginC.pdf", useDingbats=FALSE)
   lines(Xs, predict(svm, data.frame(nX=Xs)), col=rgb(0.1,0.8,.1), lwd=3)
   text(135, 40, txt, cex=0.9)
   arrows(100, 42, 100, mean(nZ), angle=15)
+  legend(par()$usr[1],par()$usr[4],
+                c("Support vector machine (SVM) fit as in Figure 3",
+                  "SVM (alternative simulations)",
+                  "Support or nonsupport vector"),
+                  lty=c(1,1,0), pch=c(NA,NA,16),
+                  lwd=c(3,1.1), col=c(rgb(0.1,0.8,.1),rgb(1,0,0,.3),1),
+                  pt.cex=c(NA,NA,0.9))
   par(opts)
 dev.off()
 
