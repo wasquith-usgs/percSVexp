@@ -57,19 +57,19 @@ Late testing (October 2019) seems to indicate that the seed setting is not holdi
 
 <img src='/www/ProbSVMexp_Seed1runA.png'  width='900' align="middle" />
 
-### Seed = 2 (Run B)
+### Seed = 1 (Run B)
 
 <img src='/www/ProbSVMexp_Seed1runB.png'  width='900' align="middle" />
 
-### Seed = 3
+### Seed = 2
 
 <img src='/www/ProbSVMexp_Seed2run.png'  width='900' align="middle" />
 
-### Seed = 4
+### Seed = 3
 
 <img src='/www/ProbSVMexp_Seed3run.png'  width='900' align="middle" />
 
-### Seed = 5
+### Seed = 4
 
 <img src='/www/ProbSVMexp_Seed4run.png' width='900' align="middle" />
 
