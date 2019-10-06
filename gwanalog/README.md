@@ -75,35 +75,31 @@ Lastly, there is a part of the script that is used to study the performance of _
 <img src='/www/ProbSVMexp_Seed4run.png' width='900' align="middle" />
 
 
-# SESSION INFO (Fri Sep 27 09:04:02 2019)
+# SESSION INFO (Sun Oct  6 17:58:42 2019)
 ```{r}
   R version 3.6.1 (2019-07-05)
   Platform: x86_64-apple-darwin15.6.0 (64-bit)
   Running under: macOS High Sierra 10.13.6
 
   Matrix products: default
-  BLAS:     /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/
-                                       vecLib.framework/Versions/A/libBLAS.dylib
+  BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/
+                                     vecLib.framework/Versions/A/libBLAS.dylib
   LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
 
   locale:
-  [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+   [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
   attached base packages:
-  [1] stats     graphics  grDevices utils     datasets  methods   base     
+   [1] stats     graphics  grDevices utils     datasets  methods  
+   [7] base     
 
   other attached packages:
-  [1] mgcv_1.8-29         nlme_3.1-140        feather_0.3.5       GISTools_0.7-4     
-  [5] rgeos_0.5-1         MASS_7.3-51.4       RColorBrewer_1.1-2  maptools_0.9-5     
-  [9] rgdal_1.4-4         sp_1.3-1            kernlab_0.9-27      dataRetrieval_2.7.5
+   [1] mgcv_1.8-29    nlme_3.1-140   kernlab_0.9-27
 
- loaded via a namespace (and not attached):
-  [1] Rcpp_1.0.2      rstudioapi_0.10 xml2_1.2.2      splines_3.6.1   hms_0.5.1      
-  [6] lattice_0.20-38 R6_2.4.0        lmomco_2.3.2    rlang_0.4.0     httr_1.4.1     
- [11] tools_3.6.1     Lmoments_1.3-1  grid_3.6.1      goftest_1.1-1   tibble_2.1.3   
- [16] crayon_1.3.4    Matrix_1.2-17   readr_1.3.1     vctrs_0.2.0     curl_4.2       
- [21] zeallot_0.1.0   compiler_3.6.1  pillar_1.4.2    backports_1.1.4 foreign_0.8-71 
- [26] pkgconfig_2.0.3
+  loaded via a namespace (and not attached):
+   [1] MASS_7.3-51.4   compiler_3.6.1  lmomco_2.3.2    Matrix_1.2-17  
+   [5] tools_3.6.1     Rcpp_1.0.2      Lmoments_1.3-1  splines_3.6.1  
+   [9] grid_3.6.1      goftest_1.1-1   lattice_0.20-38
 ```
 
 # REFERENCES
