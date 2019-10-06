@@ -3,17 +3,19 @@
 
 #### Author:           William H. Asquith
 #### Point of contact: William H. Asquith (wasquith@usgs.gov)
-#### Date:             September, 2019
+#### Date:             October 2019
 
 ***
 
-# INTRODUCTION
+# DESCRIPTION
+
+## Introduction
 
 The **percSVexp** repository contains all computer code and data used in the development of a research manuscript that has been submitted to an academic journal. The code herein is considered experimental and research in nature. The suggested citation of the paper at the time of this documentation follows:
 
 * Asquith, W.H., 2019, Assessing Site Importance using Support Vectors for Hydrometeorologic Network Analyses: in reconciliation review with Journal of Hydrology. [William H. Asquith, 0000-0002-7400-1861; USGS Information Product Data System (IPDS) no. IP-104552 (internal agency tracking)]
 
-The home directory of the repository contains two primary subordinate directories: `./exampapp/` and `./gwanalog`. Each of these contains _R_ source code used to conduct the study of support vector machines (SVMs) within the main body of the paper as well as the _R_ source code to conduct the example application.
+The home directory of the repository contains two primary subordinate directories: `./exampapp/` and `./gwanalog`. Each of these contains _R_ source code used to conduct the study of **Support Vector Machines** (SVMs) within the main body of the paper as well as the _R_ source code to conduct the example application.
 
 The scripts referenced herein use several add-on packages to the _R_ language. It is the user's responsibility to install these (_e.g._ `install.packages("kernlab")` for the SVM algorithms). Some general notes. The aforementioned paper is written in the **LaTeX** format. That format supports use of macros that can be set to report repeated material to mitigate for verificaiton mistakes. The **LaTeX** variables can be identified inside the `.R` scripts herein by comments such as
 
@@ -21,10 +23,10 @@ The scripts referenced herein use several add-on packages to the _R_ language. I
 # In LaTeX source \numgageslessfivepercentSVs is the variable less_than_5
 ```
 
-These connections to the manuscript sources are potentially in understanding how the `.R` scripts contribute the manuscript.The **LaTeX** source for the manuscript is not provided in this archive.  It is anticipated that at some point, the documentation herein or the code will have reference to table and or page numbers in the final paper.
+These connections to the manuscript sources are potentially in understanding how the `.R` scripts contribute the manuscript. The **LaTeX** source for the manuscript is not presently provided in this archive. It is anticipated that at some point, the documentation herein or the code will have reference to table and or page numbers in the final paper.
 
 
-# SUBDIRECTORIES OF THE SOURCE CODE ARCHIVE
+## Subdirectories of the Source Code Archive
 
 1. Directory `./figures/` --- Contains reference copies of the dated figures that upon successful operation of the scripts in this archive are written (hard wired) into the `./draftfigures/` directory.
 

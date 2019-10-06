@@ -16,7 +16,7 @@ The `examapp.R` is to be run with the current working directory in _R_ set to `.
 
 The script requires some input data. The text files of watershed properties and annual peak-streamflow frequency values for many hundreds of U.S. Geological Survey (USGS) streamflow-gaging stations (streamgages) in and near Texas are provided in the `./data/` subdirectory. The files are `Appendix1_638wtrshdchr.txt` and `Appendix1_677trimmedQTs.txt` and are downloads accompanying Asquith and Roussel (2009). A spatial data set of United States state boundaries are contained in the Esri ArcGIS shapefile layer `cb_2017_us_state_500k.shp` that resides in `./cb_2017_us_state_500k/` (U.S. Census Bureau, 2019).
 
-The script needs to "know" which streamgages appear active or not. This is determined by the water years of the annual peak streamflow data. The script uses a list of streamgage identification numbers and goes to the Internet and retrieves the period of record data from the date the script is run. Because Internet connection stability can influence behavior, the script caches the table of peaks in the .feather file format inside a directory `./pkrda/`. If this directory does not exist, it creates it. The script is desired to work with this cache so reaching out to the Internet each time is not needed. The cache is designed ultimately to be stored in a `.zip` format of the `./pkrda/` directory and inflate this archive on-the-fly. If the user wants to start with a clean slate, just delete the `pkrda.zip` file and the cache will be reborn.
+The script needs to "know" which streamgages appear active or not. This is determined by the water years of the annual peak streamflow data. The script uses a list of streamgage identification numbers and goes to the Internet and retrieves the period of record data from the date the script is run. Because Internet connection stability can influence behavior, the script caches the table of peaks in the .feather file format inside a directory `./pkrda/`. If this directory does not exist, it creates it. The script is desired to work with this cache so reaching out to the Internet each time is not needed. The cache is designed ultimately to be stored in a `.zip` format of the `./pkrda/` directory and inflate this archive on-the-fly. If the user wants to start with a clean slate, just delete the `pkrda.zip` file and the cache will be reborn when the script is run again.
 
 The script defines two functions: `insertWaterYear()` and `myreadNWISpeak()`. The first adds a water year to data tables of USGS peak streamflows that will be pulled through the Internet from the USGS National Water Information System (U.S. Geological Survey, 2019). This means that the script at one point expects a live Internet connection. The second provides an abstraction layer the the **dataRetrieval** package that pulls USGS peak streamflow data by the `readNWISpeak()` function. The `myreadNWISpeak()` function provides a mechansim for caching the peak streamflow data tables (in a `.feather` format by the **feather** package) in a directory that is created or inflated on-the-fly. This caching permits the reuse of the `examapp.R` script without having to retrieve the USGS data from the Internet each time the script is tested.
 
@@ -71,21 +71,21 @@ Several "facts" about the simulation run are then reported to the console (Septe
 
 The script then constructs the following figure:
 
-* Figure `fig09_svmtexaspp.pdf` --- This figure depicts the distribution of the support vector percentages of the streamgages in Texas based on leave-one-out SVM operation with `nsim` simulations of leave-out-out. The figure (September 27, 2019) is shown below:
+* Figure `fig08_svmtexaspp.pdf` --- This figure depicts the distribution of the support vector percentages of the streamgages in Texas based on leave-one-out SVM operation with `nsim` simulations of leave-out-out. The figure (September 27, 2019) is shown below:
 
-<img src='../www/fig09_svmtexaspp20190927.png' width='400' align="middle" />
+<img src='../www/fig08_svmtexaspp20191006.png' width='400' align="middle" />
 
 
 The script then returns to the **dataRetrieval** package to acquire, unless already cached, annual peak streamflow data. The data tables will be stored in the `./pkrda/` directory or the `./pkrda.zip` zipped archive. Interest is not actually on the peak streamflow values for this script and example application but in whether a given streamgage is "active" in contrast to "discontinued." The script uses a definition of any streamgage having its last year in the 21st century as "modern." In particular, the `needed_badly <- needed_greatly[last_year < 2000]` line distinguishes the streamgages by those that are support vectors all the time as `needed_greatly` but have not operated in 20 years or so as ``needed_badly`.
 
 The script then constructs the following figure:
 
-* Figure `fig10_svmtexasmap.pdf` --- Locations of streamgages in Texas from Asquith and Roussel (2009) used to create SVMs for estimation of 10-year peak streamflow using watershed properties of contributing drainage area, main-channel slope, mean annual precipitation, and spatial coordinates. The figure (September 27, 2019) is shown below:
+* Figure `fig09_svmtexasmap.pdf` --- Locations of streamgages in Texas from Asquith and Roussel (2009) used to create SVMs for estimation of 10-year peak streamflow using watershed properties of contributing drainage area, main-channel slope, mean annual precipitation, and spatial coordinates. The figure (October 6, 2019) is shown below:
 
-<img src='../www/fig10_svmtexasmap20190927.png' width='600' align="middle" />
+<img src='../www/fig09_svmtexasmap20191006.png' width='600' align="middle" />
 
 
-The script then completes with the reporting of summary statistics in regards to the watershed properties of the streamgages that are needed badly so that a comparison to the summary statistics of the greater network can be made. The interest is in what generalized regions of watershed parameter space are represented by the badly needed sites relative to the network. For example, the results seems to indicate that the sites are commonly on smaller watersheds relative to the greater network. Far more details and interpretations are documented in Asquith (2019). Only the drainage area comparison (September 27, 2019) is shown:
+The script then completes with the reporting of summary statistics in regards to the watershed properties of the streamgages that are needed badly so that a comparison to the summary statistics of the greater network can be made. The interest is in what generalized regions of watershed parameter space are represented by the badly needed sites relative to the network. For example, the results seems to indicate that the sites are commonly on smaller watersheds relative to the greater network. Far more details and interpretations are documented in Asquith (2019). Only the drainage area comparison (October 6, 2019) is shown:
 ```{r}
   message("Summary of Overall Network Contributing Drainage Areas in km^2")
   print(10^summary(SF$CDA)*2.589988)
@@ -137,6 +137,6 @@ Asquith, W.H., 2019, Assessing Site Importance using Support Vectors for Hydrome
 Asquith, W.H., Roussel, M.C., 2009, Regression equations for estimation of annual peak-streamflow frequency for undeveloped watersheds in Texas using an L-moment-based, PRESS-minimized, residual-adjusted approach: U.S. Geological Survey Scientific Investigations Report 2009-5087, 48 p. https://pubs.usgs.gov/sir/2009/5087/.
 
 U.S. Census Bureau, 2019, Shape file `cb_2017_us_state_500k`, accessed on January 22, 2019, at https://www.census.gov/geo/maps-data/data/cbf/cbf_state.html
-[Currently (September, 27, 2019) a 2018 version resides at https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_state_500k.zip through the parent link https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html]
+[Currently (October, 06, 2019) a 2018 version resides at https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_state_500k.zip through the parent link https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html]
 
 U.S. Geological Survey, 2019, USGS water data for the Nation: U.S. Geological Survey National Water Information System database, accessed August 9, 2019, at https://doi.org/10.5066/F7P55KJN.

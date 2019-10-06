@@ -2,22 +2,21 @@
 
 #### Author:           William H. Asquith
 #### Point of contact: William H. Asquith (wasquith@usgs.gov)
-#### Date:             September, 2019
+#### Date:             October 2019
 
 ***
 
 # INTRODUCTION
 
-This directory is designed to document source code used in the study of the importance of support vectors of Support Vector Machines (SVMs) in an draft academic paper (Asquith, 2019).  The script `ProbSVMexp.R` requires the external _R_ packages **kernlab** and **mgcv**. These can be found on the Comprehensive R Archive Network (CRAN) (https://cran.r-project.org). The script is technically demanding and to be seen by users as a recipe of sorts for some research ideas on part of the author.
+This directory is designed to document source code used in the study of the importance of support vectors of **Support Vector Machines** (SVMs) in an draft academic paper (Asquith, 2019). The script `ProbSVMexp.R` requires the external _R_ packages **kernlab** and **mgcv**. These can be found on the Comprehensive R Archive Network (CRAN) (https://cran.r-project.org). The script is technically demanding and to be seen by users as a recipe of sorts for some research ideas on part of the author. The code base here by no means represents a type of design standard on the topic of the paper. Finally, the order of operation with the script closely follows the greater narrative and mathematical presentation in the aforementioned paper.
 
+For the paper, the author used an interactive session to compute the results and then port them to the **LaTeX** sources of the paper. Specifically, the author's manner of operation to support the Asquith (2019) paper is to change the seed to different values (2,3,4) and rerun the script. This manner of operation means than with each pass various output facts or results are then retained for the narrative in the paper. This is not an ideal situation but further design of interface is beyond the scope of this research code and scope of documentation.
 
-The author used an interactive session to compute the results and then port them to the **LaTeX** sources of the paper. Specifically, the author's manner of operation to support the Asquith (2019) paper is to change the seed to different values (2,3,4) and rerun the script. This manner of operation means than with each pass various output facts or results are then retained for the narrative in the paper. This is not an ideal situation but further design of interface is beyond the scope of this research software and scope of documentation. The order of operation of the script closely follows the greater narrative and mathematical presentation in the aforementioned paper.
+The script reports many helpful messages to the console. These report material that is included in tables or threaded in the narrative of the paper. The tables are identified by their labels in the LaTeX source of the paper as well as by table number. For example, `tab:wholemodel` refers to what is table 1 in the manuscript. The script is also important because it creates portable document format (PDF) figures along a relative path (up and down) at `../draftfigures`. Therein, the figures `figNN*.pdf` where `NN` is 01a and 01b, 02, ..., and 07 for the seven figure numbers.
 
-The script reports many helpful messages to the console. These report material that is included in tables or narrative of the paper. The tables are identified by their labels in the LaTeX source of the paper. For example, `tab:wholemodel` refers to what is table 1 in the manuscript. The script is also important because it creates portable document format (PDF) figures along a relative path (up and down) at `../draftfigures`. Therein, the figures `figNN*.pdf` where `NN` is 01, 02, ..., 08 for the eight figure numbers.
+The script `ProbSVMexp_withRVM.R` represents abandoned experimental efforts involving research on **Relavence Vector Machines** (RVMs). The script is only kept here for some type of legacy reference should someone be interested. It should run out of the box, but be warned, it will overwrite the figures generated aby the `ProbSVMexp.R` script. The `ProbSVMexp_withRVM.R` does not produce any results directly referenced in the paper, and no further discussion is made about this script.
 
-The script `ProbSVMexp_withRVM.R` represents abandoned experimental efforts involving research on Relavence Vector Machines (RVMs). The script is only kept here for some type of legacy reference should someone be interested. It should run out of the box, but be warned, it will overwrite the figures generated aby the `ProbSVMexp.R` script. The `ProbSVMexp_withRVM.R` does not produce any results directly referenced in the paper. No further discussion is made about the script.
-
-There is a file `figs01ab_refmeas.pdf` that represents a combination of the `fig01_rawsurface.pdf`, `fig02_rawimage.pdf`, and `fig02_rawlegend.pdf` files that are produced by the script. The `fig01ab_refmeas.pdf` file was created in a vector editing software package. This file is emplaced in this directory as a reference version hold the "measure" (the margins) and axis titles and labels as well as the legend on the far right. In the event that the author needs to repeat the construction of the figure in the research paper, then a reference is available.
+There is a file `figs01ab_refmeas.pdf` that represents a combination of the `fig01_rawsurface.pdf`, `fig01_rawimage.pdf`, and `fig01ab_rawlegend.pdf` files that are produced by the script. The `fig01ab_refmeas.pdf` file was created in a vector editing software package. This file is emplaced in this directory as a reference version hold the "measure" (the margins) and axis titles and labels as well as the legend on the far right. In the event that the author needs to repeat the construction of the figure in the research paper, then a reference is available.
 
 # ORDER OF OPERATION
 
@@ -53,6 +52,8 @@ The script is set up with a seeds on the pseudo-random number generated as `set.
 
 Late testing (October 2019) seems to indicate that the seed setting is not holding some output results entirely constant compared to the period of original code development in January 2019. Concerning the author's computational infrastructure, R versions at the minimum have changed or some other nuance is present. To add in showing reproducibility of sorts, several screen shots are shown. The first two both use a seed of 1 and the next three use seeds of 2, 3, and 4, respectively. The files are located at `./percSVexp/www` with file names `ProbSVMexp_Seed1runA.png`, `ProbSVMexp_Seed1runB.png`, `ProbSVMexp_Seed2run.png`, `ProbSVMexp_Seed3run.png`, and `ProbSVMexp_Seed4run.png`.
 
+Lastly, there is a part of the script that is used to study the performance of _random samples_ having a sample size equaling the number of support vectors. The random drawing occurs at the line containing `set <- sample(ix, size=svm.n, replace=FALSE)`. Because the sample size changes in variable `svm.n`, it is a little difficult to make fully reproducible results. The following screenshots can be used as a reference and perhaps special attention made to comparison of the first two: `*ProbSVMexp_Seed1run[A|B].png`.
+
 ### Seed = 1 (Run A)
 
 <img src='/www/ProbSVMexp_Seed1runA.png'  width='900' align="middle" />
@@ -72,8 +73,6 @@ Late testing (October 2019) seems to indicate that the seed setting is not holdi
 ### Seed = 4
 
 <img src='/www/ProbSVMexp_Seed4run.png' width='900' align="middle" />
-
-
 
 
 # SESSION INFO (Fri Sep 27 09:04:02 2019)
