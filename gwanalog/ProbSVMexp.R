@@ -57,7 +57,7 @@ pdf("../draftfigures/fig01ab_rawlegend.pdf", useDingbats=FALSE)
   plot(rep(1,20), 1:20, col=rev(cols), pch=15, cex=3.2,
        xaxt="n", yaxt="n", xlab="", ylab="")
   for(i in 1:20) {
-    text(1.1, i, round(quas[i], digits=0))
+    text(1.1, 21-i, round(quas[i], digits=0))
   }
   mtext("Approximate break points\nin the Z direction")
   par(opts)
