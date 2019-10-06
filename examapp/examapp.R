@@ -244,7 +244,7 @@ pdf("../draftfigures/fig09_svmtexasmap.pdf", useDingbats=TRUE)
 dev.off()
 
 
-
+message(date())
 message("All \\numgages=",length(SF$svm_ratio),"\n",
         "Num of needed greatly \\numgagesalwaysSVs= ",length(needed_greatly),"\n",
         "Num of needed badly (discontinued sites) \\numgagesalwaysSVsdiscontinued = ",length(needed_badly))

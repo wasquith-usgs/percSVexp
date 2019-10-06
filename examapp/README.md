@@ -26,7 +26,7 @@ The script uses (variable `WC`) the contributing drainage area, main-channel slo
 
 The streamgage latitude and longitude are acquired from the Internet using the `readNWISsite()` from the **dataRetrieval** package and stored in the `SF` (site file) variable. There are some duplicates because of multiple agencies in the site file, and these are removed. The streamgage locations are projected into Albers Equal area coordinates (northing and easting in meters) with the 10-year and three watershed properties to form a `SpatialPointsDataFrame` using functions of the **sp** package. Finally, only streamgages in Texas (`STATE == 48`) are retained for purposes of the example application documented in the script. There are 536 streamgages (`length(SF$STATION)`).
 
-Summary statistics are presented, notice the retransformations, by the following code with verbatim (September 27, 2019) results.
+Summary statistics are presented, notice the retransformations, by the following code with verbatim (October 6, 2019) results.
 ```{r}
   message("Summary of Overall Network Contributing Drainage Areas in km^2")
   print(10^summary(SF$CDA)*2.589988)
@@ -99,35 +99,36 @@ The script then completes with the reporting of summary statistics in regards to
 ```
 
 
-# SESSION INFO (Fri Sep 27 09:04:02 2019)
+# SESSION INFO (Sun Oct  6 10:20:51 2019)
 ```{r}
-  R version 3.6.0 (2019-04-26)
+  R version 3.6.1 (2019-07-05)
   Platform: x86_64-apple-darwin15.6.0 (64-bit)
   Running under: macOS High Sierra 10.13.6
 
   Matrix products: default
-  BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/
-                                     vecLib.framework/Versions/A/libBLAS.dylib
+  BLAS: /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/
+                                   vecLib.framework/Versions/A/libBLAS.dylib
   LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
 
   locale:
   [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
   attached base packages:
-  [1] stats     graphics  grDevices utils     datasets  methods   base
+  [1] stats     graphics  grDevices utils     datasets  methods   base     
 
   other attached packages:
-  [1] feather_0.3.3       GISTools_0.7-4      rgeos_0.4-3
-  [4] MASS_7.3-51.4       RColorBrewer_1.1-2  maptools_0.9-5
-  [7] rgdal_1.4-4         sp_1.3-1            kernlab_0.9-27
+   [1] feather_0.3.5       GISTools_0.7-4      rgeos_0.5-1        
+   [4] MASS_7.3-51.4       RColorBrewer_1.1-2  maptools_0.9-5     
+   [7] rgdal_1.4-4         sp_1.3-1            kernlab_0.9-27     
   [10] dataRetrieval_2.7.5
 
-  loaded via a namespace (and not attached):
-  [1] Rcpp_1.0.2      lattice_0.20-38 crayon_1.3.4    zeallot_0.1.0
-  [5] grid_3.6.0      backports_1.1.4 pillar_1.4.2    rlang_0.4.0
-  [9] rstudioapi_0.10 xml2_1.2.2      vctrs_0.2.0     tools_3.6.0
-  [13] foreign_0.8-71  hms_0.5.1       compiler_3.6.0  pkgconfig_2.0.3
-  [17] tibble_2.1.3
+ loaded via a namespace (and not attached):
+   [1] Rcpp_1.0.2      rstudioapi_0.10 xml2_1.2.2      hms_0.5.1      
+   [5] lattice_0.20-38 R6_2.4.0        lmomco_2.3.2    rlang_0.4.0    
+   [9] httr_1.4.1      Lmoments_1.3-1  tools_3.6.1     grid_3.6.1     
+  [13] goftest_1.1-1   tibble_2.1.3    crayon_1.3.4    readr_1.3.1    
+  [17] vctrs_0.2.0     curl_4.2        zeallot_0.1.0   compiler_3.6.1 
+  [21] pillar_1.4.2    backports_1.1.4 foreign_0.8-71  pkgconfig_2.0.3
 ```
 
 # REFERENCES
