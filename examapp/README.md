@@ -124,11 +124,11 @@ The script then completes with the reporting of summary statistics in regards to
 
  loaded via a namespace (and not attached):
    [1] Rcpp_1.0.2      rstudioapi_0.10 xml2_1.2.2      hms_0.5.1      
-   [5] lattice_0.20-38 R6_2.4.0        lmomco_2.3.2    rlang_0.4.0    
-   [9] httr_1.4.1      Lmoments_1.3-1  tools_3.6.1     grid_3.6.1     
-  [13] goftest_1.1-1   tibble_2.1.3    crayon_1.3.4    readr_1.3.1    
-  [17] vctrs_0.2.0     curl_4.2        zeallot_0.1.0   compiler_3.6.1 
-  [21] pillar_1.4.2    backports_1.1.4 foreign_0.8-71  pkgconfig_2.0.3
+   [5] lattice_0.20-38 R6_2.4.0        rlang_0.4.0     httr_1.4.1     
+   [9] tools_3.6.1     grid_3.6.1      tibble_2.1.3    crayon_1.3.4   
+  [13] readr_1.3.1     vctrs_0.2.0     curl_4.2        zeallot_0.1.0  
+  [17] compiler_3.6.1  pillar_1.4.2    backports_1.1.4 foreign_0.8-71 
+  [21] pkgconfig_2.0.3
 ```
 
 # REFERENCES

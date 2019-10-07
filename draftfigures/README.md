@@ -2,15 +2,14 @@
 
 #### Author:           William H. Asquith
 #### Point of contact: William H. Asquith (wasquith@usgs.gov)
-#### Date:             September, 2019
+#### Date:             October 2019
 
 ***
 
 # DETAILS
 
-This directory is purposed to hold draft figures for portable document format (PDF) form from algorithms documented in this source code archive. Specifically, these figures are created by the `.R` scripts in the `../examapp` and `../gwanalog/` directories. For the purposes of authoring a draft academic paper (Asquith, 2019), these draft figures in `./draftfigures/` were copied over to another directory where the **LaTeX** sources for the paper that subsequently imports them.
-
-Figures `fig09_svmtexaspp.pdf` and `fig10_svmtexasmap.pdf` are created by the script `../examapp/examapp.R`.
+This directory is purposed to hold draft figures for portable document format (PDF) from the algorithms provuded in this source code archive. These figures are created by the `.R` scripts in the `../examapp` and `../gwanalog/` directories. For the purposes of authoring a draft academic paper (Asquith, 2019), these draft figures in `./draftfigures/` were then copied over to another directory where the **LaTeX** sources for the paper that subsequently imported them after limited hand edits by the author in vector editing software. Figures `fig0[1-8]*.pdf` were created by the script `../gwanalog/ProbSVMexp.R`.
+Figures `fig09_svmtexaspp.pdf` and `fig10_svmtexasmap.pdf` were created by the script `../examapp/examapp.R`.
 
 # REFERENCES
 

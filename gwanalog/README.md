@@ -16,7 +16,7 @@ The script reports many helpful messages to the console. These report material t
 
 The script `ProbSVMexp_withRVM.R` represents abandoned experimental efforts involving research on **Relavence Vector Machines** (RVMs). The script is only kept here for some type of legacy reference should someone be interested. It should run out of the box, but be warned, it will overwrite the figures generated aby the `ProbSVMexp.R` script. The `ProbSVMexp_withRVM.R` does not produce any results directly referenced in the paper, and no further discussion is made about this script.
 
-There is a file `figs01ab_refmeas.pdf` that represents a combination of the `fig01_rawsurface.pdf`, `fig01_rawimage.pdf`, and `fig01ab_rawlegend.pdf` files that are produced by the script. The `fig01ab_refmeas.pdf` file was created in a vector editing software package. This file is emplaced in this directory as a reference version hold the "measure" (the margins) and axis titles and labels as well as the legend on the far right. In the event that the author needs to repeat the construction of the figure in the research paper, then a reference is available.
+There is a file `figs01ab_refmeas.pdf` in this directory that represents a combination of the `fig01_rawsurface.pdf`, `fig01_rawimage.pdf`, and `fig01ab_rawlegend.pdf` files that are produced by the script. The `fig01ab_refmeas.pdf` file was created in a vector editing software package. This file is emplaced in this directory as a reference version hold the "measure" (the margins) and axis titles and labels as well as the legend on the far right. In the event that the author needs to repeat the construction of the figure in the research paper, then a reference is available.
 
 # ORDER OF OPERATION
 
@@ -97,9 +97,8 @@ Lastly, there is a part of the script that is used to study the performance of _
    [1] mgcv_1.8-29    nlme_3.1-140   kernlab_0.9-27
 
   loaded via a namespace (and not attached):
-   [1] MASS_7.3-51.4   compiler_3.6.1  lmomco_2.3.2    Matrix_1.2-17  
-   [5] tools_3.6.1     Rcpp_1.0.2      Lmoments_1.3-1  splines_3.6.1  
-   [9] grid_3.6.1      goftest_1.1-1   lattice_0.20-38
+   [1] compiler_3.6.1  Matrix_1.2-17   tools_3.6.1     splines_3.6.1  
+   [5] grid_3.6.1      lattice_0.20-38
 ```
 
 # REFERENCES
