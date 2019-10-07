@@ -256,7 +256,7 @@ message("Grid Level +n^svm Model (NSE, RMSE): n=",svm.n, ", ",
         round(NSE(M,P.lite), digits=3), ", ",
         round(sqrt(mean((M-P.lite)^2)), digits=3),
         " {tab:submodel} (Table 2)")
-message("Grid Level -n^svm Model NSE: n=",nobs-svm.n, ", ",
+message("Grid Level -n^svm Model (NSE, RMSE): n=",nobs-svm.n, ", ",
         round(NSE(M,P.invlite), digits=3), ", ",
         round(sqrt(mean((M-P.invlite)^2)), digits=3),
         " {tab:submodel} (Table 2)")
@@ -286,6 +286,7 @@ message("RAND.NSE.rand:  ", seed, ", n=", svm.n, ", ",
 message("RAND.RMSE.rand: ", seed, ", n=", svm.n, ", ",
          paste(round(summary(RAND.RMSE.rand), digits=3), collapse=", "),
         " {tab:simrmsense}} (Table 3)")
+message("\\RMSErandFIRSTQUARTILEthenplusrandSVcount = ",round(summary(RAND.RMSE.rand)[2],  digits=3), " {tab:simrmsense}} (Table 3)")
 
 
 set.seed(seed)
