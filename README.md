@@ -28,7 +28,7 @@ These connections to the manuscript sources are potentially in understanding how
 
 ## Subdirectories of the Source Code Archive
 
-1. Directory `./figures/` --- Contains reference copies of the dated figures that upon successful operation of the scripts in this archive are written (hard wired) into the `./draftfigures/` directory.
+1. Directory `./figures/` --- Contains reference copies of the dated figures that upon successful operation of the scripts in this archive are written (hard wired) into the `./draftfigures/` directory. The figures contained herein are planned to be those used in the aforementioned paper.
 
 2. Directory `./draftfigures/` --- Contains results of the scripts contained herein. This directory is hard-wired in the code through notation such as `../draftfigures` to lift the path up from either `./gwanalog/ProbSVMexp.R` or `./examapp/examapp.R` and down into `./draftfigures/`. A user running the scripts can then compare the output to the reference results in `./figures` with a caveat that some differences could be seen because of seeds on the random number generator in `ProbSVMexp.R` or general nuances of SVM use (`examapp.R`).
 
