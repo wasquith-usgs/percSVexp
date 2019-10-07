@@ -1,7 +1,5 @@
 # CONTRIBUTING (./CONTRIBUTING.md)
 
-All contributions to- and interactions surrounding- this project will abide by the USGS Code of Scientific Conduct accessed on August 5, 2019 at https://www2.usgs.gov/fsp/fsp_code_of_scientific_conduct.asp
+This source code repository is not designed for contributions but to a static component of Supplemental Materials to accompany the research paper:
 
-As a contributor and maintainer of this project, the author pledges to respect all people who contribute through reporting issues, posting feature requests, updating documentation, submitting pull requests or patches, and other activities.
-
-Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, issues, and other contributions that are not aligned to the USGS Code of Conduct.
+* Asquith, W.H., 2019, Assessing Site Importance using Support Vectors for Hydrometeorologic Network Analyses: in reconciliation review with Journal of Hydrology. [William H. Asquith, 0000-0002-7400-1861; USGS Information Product Data System (IPDS) no. IP-104552 (internal agency tracking)]
