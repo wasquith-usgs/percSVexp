@@ -254,6 +254,7 @@ message(date())
 message("All \\numgages=",length(SF$svm_ratio),"\n",
         "Num of needed greatly \\numgagesalwaysSVs= ",length(needed_greatly),"\n",
         "Num of needed badly (discontinued sites) \\numgagesalwaysSVsdiscontinued = ",length(needed_badly))
+message("Number of streamgages <=5 percent of time support vectors = \\numgageslessfivepercentSVs = ", less_than_five)
 
 JK <- SF[SF$STATION == needed_badly[1],]
 for(i in 2:length(needed_badly)) {
