@@ -6,6 +6,12 @@ library(GISTools) # transparency adder (as written the script does not use add.a
 library(feather) # flaky Internet connections can yield problems in repeated pulling
 # of USGS peak data, we will write feather files as a type of cache
 
+"pp" <- function(x, sort=TRUE, ...) { # Weibull plotting positions
+    denom <- length(x) + 1
+    ranks <- rank(x, ties.method = "first")
+    ifelse(sort, return(sort(ranks)/denom), return(ranks/denom))
+}
+
 "insertWaterYear" <- function(x) {
    if(!is.data.frame(x)) {
     stop(paste0("a data.frame as in 'dataRetrieval::readNWISpeak(station, ",
@@ -170,8 +176,8 @@ txt <- "Color hue is prorated from red to blue\nbased on nonexceedance probabili
 pdf("../draftfigures/fig08_svmtexaspp.pdf", useDingbats=TRUE)
   opts <- par(no.readonly = TRUE); par(las=1)
   tmp <- SF[order(SF$svm_ratio),]
-  plot(lmomco::pp(tmp$svm_ratio, sort=FALSE),
-                  tmp$svm_ratio*100, xlim=c(0,1),
+  plot(pp(tmp$svm_ratio, sort=FALSE),
+          tmp$svm_ratio*100, xlim=c(0,1),
        xlab="NONEXCEEDANCE PROBABILITY", lwd=0.8, type="p",
        ylab="SUPPORT VECTOR PERCENTAGE",
        col=rgb(1-tmp$svm_ratio,0,tmp$svm_ratio))

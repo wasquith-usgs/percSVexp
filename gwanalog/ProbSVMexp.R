@@ -3,6 +3,13 @@ library(kernlab)
 library(mgcv)
 seed <- 1 # notice that set.seed(62) is used about 25 lines later, here this is a reminder to the reader
 
+"pp" <- function(x, sort=TRUE, ...) { # Weibull plotting positions
+    denom <- length(x) + 1
+    ranks <- rank(x, ties.method = "first")
+    ifelse(sort, return(sort(ranks)/denom), return(ranks/denom))
+}
+
+
 message(date(), " with seed=",seed)
 
 # STEP 1.
@@ -351,8 +358,8 @@ txt <- "Color hue is prorated from\nred to blue based on\nnonexceedance probabil
 pdf("../draftfigures/fig07_svmvecpp.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   tmp <- svm[order(svm$svm_ratio),]
-  plot(lmomco::pp(tmp$svm_ratio, sort=FALSE),
-                  tmp$svm_ratio*100,
+  plot(pp(tmp$svm_ratio, sort=FALSE),
+          tmp$svm_ratio*100,
        xlab="NONEXCEEDANCE PROBABILITY", lwd=0.8, type="p",
        ylab="SUPPORT VECTOR PERCENTAGE", xlim=c(0,1),
        col=rgb(1-tmp$svm_ratio,0,tmp$svm_ratio))
