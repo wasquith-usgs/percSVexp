@@ -173,7 +173,7 @@ always_hundred_percent <- length(needed_greatly)
 message("Number of streamgages 100 percent of time support vectors = \\numgagesalwaysSVs =", always_hundred_percent)
 
 txt <- "Color hue is prorated from red to blue\nbased on nonexceedance probability."
-pdf("../draftfigures/fig08_svmtexaspp.pdf", useDingbats=TRUE)
+pdf("../draftfigures/fig08_svmtexaspp.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   tmp <- SF[order(SF$svm_ratio),]
   plot(pp(tmp$svm_ratio, sort=FALSE),
@@ -217,7 +217,7 @@ message("Number of streamgages 100 percent of time support vectors that are ",
 txt <- "Color hue is prorated from\nred to blue based on\nnonexceedance probability."
 
 # Create the map
-pdf("../draftfigures/fig09_svmtexasmap.pdf", useDingbats=TRUE)
+pdf("../draftfigures/fig09_svmtexasmap.pdf", useDingbats=FALSE)
   opts <- par(no.readonly = TRUE); par(las=1)
   plot(TX, lwd=1.1)
   #plot(SF, lwd=0.5, pch=4, cex=0.8, add=TRUE)
