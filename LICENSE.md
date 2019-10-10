@@ -1,4 +1,4 @@
-# LICENSE (./MGBT/LICENSE.md)
+# LICENSE (./percSVMexp/LICENSE.md)
 
 ***
 ***
