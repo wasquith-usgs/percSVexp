@@ -8,7 +8,7 @@
 
 # INTRODUCTION
 
-This directory is designed to document source code used in the **Example Application** in an draft academic paper (Asquith, 2019). The script `examapp.R` performs the example application. The script requires the external _R_ packages **dataRetrieval**, **kernlab**, **sp**, **rgdal**, **GISTools**, and **feather**. These can be found on the Comprehensive R Archive Network (CRAN) (https://cran.r-project.org). The script is technically demanding and to be seen by users as a recipe of sorts for some research ideas on part of the author.
+This directory is designed to document source code used in the **Example Application** in an draft academic paper (Asquith, 2019). The script `examapp.R` performs the example application. The script requires the external _R_ packages **dataRetrieval**, **kernlab**, **sp**, **rgdal**, **GISTools**, and **feather**. These packages can be found on the Comprehensive R Archive Network (CRAN) (https://cran.r-project.org). The script is technically demanding and to be seen by users as a recipe of sorts for some research ideas on part of the author.
 
 The `examapp.R` is to be run with the current working directory in _R_ set to `./examapp/`. The directory and script names are to mean "example application."  The script does not need the contents of the `./gwanalog/` directory in this source code archive and vice versa.
 
@@ -16,7 +16,7 @@ The `examapp.R` is to be run with the current working directory in _R_ set to `.
 
 The script requires some input data. The text files of watershed properties and annual peak-streamflow frequency values for many hundreds of U.S. Geological Survey (USGS) streamflow-gaging stations (streamgages) in and near Texas are provided in the `./data/` subdirectory. The files are `Appendix1_638wtrshdchr.txt` and `Appendix1_677trimmedQTs.txt` and are downloads accompanying Asquith and Roussel (2009). A spatial data set of United States state boundaries are contained in the Esri ArcGIS shapefile layer `cb_2017_us_state_500k.shp` that resides in `./cb_2017_us_state_500k/` (U.S. Census Bureau, 2019).
 
-The script needs to "know" which streamgages appear active or not. This is determined by the water years of the annual peak streamflow data. The script uses a list of streamgage identification numbers and goes to the Internet and retrieves the period of record data from the date the script is run. Because Internet connection stability can influence behavior, the script caches the table of peaks in the .feather file format inside a directory `./pkrda/`. If this directory does not exist, it creates it. The script is desired to work with this cache so reaching out to the Internet each time is not needed. The cache is designed ultimately to be stored in a `.zip` format of the `./pkrda/` directory and inflate this archive on-the-fly. If the user wants to start with a clean slate, just delete the `pkrda.zip` file and the cache will be reborn when the script is run again.
+The script needs to "know" which streamgages appear active or not. This is determined by the water years of the annual peak streamflow data. The script uses a list of streamgage identification numbers and goes to the Internet and retrieves the period of record data from the date the script is run. Because Internet connection stability can influence behavior, the script caches the table of peaks in the .feather file format inside a directory `./pkrda/`. If this directory does not exist, it creates it. The script is desired to work with this cache so reaching out to the Internet each time is not needed. The cache is designed ultimately to be stored in a `.zip` format of the `./pkrda/` directory and inflate this archive on-the-fly. If the user wants to start with a clean slate, just delete the `pkrda.zip` file and the cache should be reborn when the script is run again.
 
 The script defines two functions: `insertWaterYear()` and `myreadNWISpeak()`. The first adds a water year to data tables of USGS peak streamflows that will be pulled through the Internet from the USGS National Water Information System (U.S. Geological Survey, 2019). This means that the script at one point expects a live Internet connection. The second provides an abstraction layer the the **dataRetrieval** package that pulls USGS peak streamflow data by the `readNWISpeak()` function. The `myreadNWISpeak()` function provides a mechansim for caching the peak streamflow data tables (in a `.feather` format by the **feather** package) in a directory that is created or inflated on-the-fly. This caching permits the reuse of the `examapp.R` script without having to retrieve the USGS data from the Internet each time the script is tested.
 
@@ -114,20 +114,20 @@ The script then completes with the reporting of summary statistics in regards to
   [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
   attached base packages:
-  [1] stats     graphics  grDevices utils     datasets  methods   base     
+  [1] stats     graphics  grDevices utils     datasets  methods   base
 
   other attached packages:
-   [1] feather_0.3.5       GISTools_0.7-4      rgeos_0.5-1        
-   [4] MASS_7.3-51.4       RColorBrewer_1.1-2  maptools_0.9-5     
-   [7] rgdal_1.4-4         sp_1.3-1            kernlab_0.9-27     
+   [1] feather_0.3.5       GISTools_0.7-4      rgeos_0.5-1
+   [4] MASS_7.3-51.4       RColorBrewer_1.1-2  maptools_0.9-5
+   [7] rgdal_1.4-4         sp_1.3-1            kernlab_0.9-27
   [10] dataRetrieval_2.7.5
 
  loaded via a namespace (and not attached):
-   [1] Rcpp_1.0.2      rstudioapi_0.10 xml2_1.2.2      hms_0.5.1      
-   [5] lattice_0.20-38 R6_2.4.0        rlang_0.4.0     httr_1.4.1     
-   [9] tools_3.6.1     grid_3.6.1      tibble_2.1.3    crayon_1.3.4   
-  [13] readr_1.3.1     vctrs_0.2.0     curl_4.2        zeallot_0.1.0  
-  [17] compiler_3.6.1  pillar_1.4.2    backports_1.1.4 foreign_0.8-71 
+   [1] Rcpp_1.0.2      rstudioapi_0.10 xml2_1.2.2      hms_0.5.1
+   [5] lattice_0.20-38 R6_2.4.0        rlang_0.4.0     httr_1.4.1
+   [9] tools_3.6.1     grid_3.6.1      tibble_2.1.3    crayon_1.3.4
+  [13] readr_1.3.1     vctrs_0.2.0     curl_4.2        zeallot_0.1.0
+  [17] compiler_3.6.1  pillar_1.4.2    backports_1.1.4 foreign_0.8-71
   [21] pkgconfig_2.0.3
 ```
 
