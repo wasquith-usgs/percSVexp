@@ -3,7 +3,7 @@
 
 #### Author:           William H. Asquith
 #### Point of contact: William H. Asquith (wasquith@usgs.gov)
-#### Date:             October 2019
+#### Date:             January 2020
 
 ***
 
@@ -13,7 +13,9 @@
 
 The **percSVexp** repository contains all computer code and data used in the development of a research manuscript that has been submitted to an academic journal. The code herein is considered experimental and research in nature. The suggested citation of the paper at the time of this documentation follows:
 
-* Asquith, W.H., 2019, Assessing Site Importance using Support Vectors for Hydrometeorologic Network Analyses: in reconciliation review with Journal of Hydrology. [William H. Asquith, 0000-0002-7400-1861; USGS Information Product Data System (IPDS) no. IP-104552 (internal agency tracking)]
+* Asquith, W.H., 2020, The use of support vectors from support vector machines for hydrometeorologic monitoring network analysis: Journal of Hydrology
+(in press, January 14, 2020)
+[William H. Asquith, 0000-0002-7400-1861; USGS Information Product Data System (IPDS) no. IP-104552 (internal agency tracking)]
 
 The home directory of the repository contains two primary subordinate directories: `./exampapp/` and `./gwanalog`. Each of these contains _R_ source code used to conduct the study of **Support Vector Machines** (SVMs) within the main body of the paper as well as the _R_ source code to conduct the example application.
 
