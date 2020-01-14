@@ -234,7 +234,7 @@ pdf("../draftfigures/fig09_svmtexasmap.pdf", useDingbats=FALSE)
            "Neither ASV or NSV sites with color blue to red color ramp",
            "Indicator of ASV not operated since at least 2000"),
           bty="n", cex=0.6, pt.bg=c(4,2,rgb(0.5,0,0.5),4),
-          pt.lwd=c(0.6,0.6,0.6,0.8), pch=c(24,25,23,1), col=c(8,8,8,4))
+          pt.lwd=c(0.6,0.6,0.6,0.8), pch=c(24,25,21,1), col=c(8,8,8,4))
   text(-280000, 1330000, "SV, support vector", cex=0.6, pos=4)
   text(-280000, 1300000, "ASV, always a support vector", cex=0.6, pos=4)
   text(-280000, 1270000, "NSV, nonsupport vector", cex=0.6, pos=4)
