@@ -1,8 +1,8 @@
 [
   {
-    "name": "percSVexp",
+    "name": "cubgamrfsvm",
     "organization": "U.S. Geological Survey",
-    "description": "Source Code for Experimental Assessment of Site Importance using Support Vectors for Hydrometeorologic Network Analyses",
+    "description": "Source Code for Experimental Study of Cubist, Generalized Additive, Random Forests, and Support Vector Machine Models for Hydrometeorologic Network Analyses",
     "version": "0.0.1",
     "status": "Preliminary Research",
 
@@ -11,15 +11,15 @@
       "licenses": [
         {
           "name": "Public Domain, CC0-1.0",
-          "URL": "https://www.github.com/USGS-R/probSVexpment/blob/master/LICENSE.md"
+          "URL": "https://www.github.com/USGS-R/cubgamrfsvm/blob/master/LICENSE.md"
         }
       ]
     },
 
-    "homepageURL": "https://www.github.com/USGS-R/percSVexp",
-    "downloadURL": "https://www.github.com/USGS-R/percSVexp/-/archive/master/probSVexpment.zip",
-    "disclaimerURL": "https://www.github.com/USGS-R/percSVexp/blob/master/DISCLAIMER.md",
-    "repositoryURL": "https://www.github.com/USGS-R/percSVexp.git",
+    "homepageURL": "https://www.github.com/USGS-R/cubgamrfsvm",
+    "downloadURL": "https://www.github.com/USGS-R/cubgamrfsvm/-/archive/master/cubgamrfsvm.zip",
+    "disclaimerURL": "https://www.github.com/USGS-R/cubgamrfsvm/blob/master/DISCLAIMER.md",
+    "repositoryURL": "https://www.github.com/USGS-R/cubgamrfsvm.git",
     "vcs": "git",
 
     "laborHours": 0,
@@ -27,7 +27,9 @@
     "tags": [
       "support vector machine",
       "support vectors",
-      "generalized additive model"
+      "generalized additive model",
+      "random forest",
+      "cubist regression"
     ],
 
     "languages": [
@@ -40,7 +42,7 @@
     },
 
     "date": {
-      "metadataLastUpdated": "2019-10-20"
+      "metadataLastUpdated": "2019-12-01"
     }
   }
 ]
