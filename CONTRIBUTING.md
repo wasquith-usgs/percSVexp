@@ -1,9 +1,12 @@
-# CONTRIBUTING (./percSVMexp/CONTRIBUTING.md)
+# CONTRIBUTING (./trajPipeFlow/CONTRIBUTING.md)
 
-This source code repository is not designed for contributions but to a static component of Supplemental Information to accompany the research paper:
+All contributions to- and interactions surrounding- this project will abide by
+the USGS Code of Scientific Conduct accessed on August 5, 2019 at
+https://www2.usgs.gov/fsp/fsp_code_of_scientific_conduct.asp
 
-* Asquith, W.H., 2020, The use of support vectors from support vector machines for hydrometeorologic monitoring network analysis: Journal of Hydrology
-(in press, January 14, 2020)
-[William H. Asquith, 0000-0002-7400-1861; USGS Information Product Data System (IPDS) no. IP-104552 (internal agency tracking)]
+As contributors and maintainers of this project, we pledge to respect all people who
+contribute through reporting issues, posting feature requests, updating documentation,
+submitting pull requests or patches, and other activities.
 
-The author's intent, should further work be made on the topic of the paper, that a fresh repository would be started over from scratch.
+Project maintainers have the right and responsibility to remove, edit, or reject comments,
+code, issues, and other contributions that are not aligned to the USGS Code of Conduct.
